@@ -1,4 +1,7 @@
-# 🚌 Bus Booking System API
+<p align="center">
+  <h1 align="center">🚌 Bus Booking System API</h1>
+</p>
+
 
 <p align="center">
   <h3 align="center">RESTful API built with Express.js & MySQL</h3>
