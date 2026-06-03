@@ -1,20 +1,22 @@
-const mysql = require("mysql2");
+const { Sequelize } = require("sequelize");
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Yashav@3528",
-    database: "bus_booking_system"
-});
-
-connection.connect((err)=>{
-
-    if(err){
-        console.log(err);
-        return;
+const sequelize = new Sequelize(
+    "bus_booking_system",
+    "root",
+    "Yashav@3528",
+    {
+        host: "localhost",
+        dialect: "mysql"
     }
+);
 
-    console.log("Database Connected");
-});
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log("Database Connected Successfully");
+    } catch (error) {
+        console.log(error);
+    }
+})();
 
-module.exports = connection;
+module.exports = sequelize;

@@ -7,7 +7,7 @@ const {
     getAvailableBuses
 } = require("../controllers/busController");
 
-router.post("/",addBus);
+router.post("/", addBus);
 
 router.get(
     "/available/:seats",
