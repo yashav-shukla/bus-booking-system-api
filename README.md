@@ -277,13 +277,13 @@ WHERE availableSeats > 10;
 ## 👨‍💻 Author
 
 <p align="center">
-  <a href="https://github.com/yashavshukla">
+  <a href="https://github.com/yashav-shukla">
     <img src="https://skillicons.dev/icons?i=github" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/yashavshukla">
+  <a href="https://github.com/yashav-shukla">
     <b>Yashav Shukla</b>
   </a>
 </p>
