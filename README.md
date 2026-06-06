@@ -348,17 +348,15 @@ GET /buses/available/10
 
 ### 📥 POST Request Results
 
-![POST Result](assets/images/post_request_add%20value.png)
-
-![POST Result](assets/images/post_request_add%20value%202.png)
+![POST Result](assets/images/post_request_add_value.png)
 
 ---
 
 ### 📤 GET Request Results
 
-![GET Result](assets/images/get_request_show%20value.png)
+![GET Result](assets/images/get-user-bookings.png)
 
-![GET Result](assets/images/get_request_show%20value%202.png)
+![GET Result](assets/images/get-bus-bookings.png)
 
 ---
 
