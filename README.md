@@ -428,13 +428,6 @@ Booking.belongsTo(Bus);
 
 <p align="center">
   <b>Yashav Shukla</b>
-</p>">
-    <img src="https://skillicons.dev/icons?i=github" />
-  </a>
-</p>
-
-<p align="center">
-  <b>Yashav Shukla</b>
 </p>
 
 <p align="center">
@@ -457,4 +450,8 @@ If you found this project useful:
 
 <p align="center">
 Made with ❤️ using Node.js, Express.js, MySQL & Sequelize ORM
+</p>
+
+<p align="center">
+Happy Coding ! 🚀
 </p>
