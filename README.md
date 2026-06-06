@@ -1,8 +1,7 @@
-
-
 <p align="center">
   <h1 align="center">🚌 Bus Booking System API using Sequelize ORM</h1>
 </p>
+
 
 <p align="center">
   <h3 align="center">RESTful API built with Node.js, Express.js, MySQL & Sequelize ORM</h3>
@@ -19,57 +18,90 @@
 </p>
 
 <p align="center">
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge\&logo=express\&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge\&logo=mysql\&logoColor=white)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge\&logo=sequelize\&logoColor=white)
+
+</p>
+
+<p align="center">
   <img src="https://skillicons.dev/icons?i=nodejs,express,mysql,javascript,git,github,vscode" />
 </p>
 
 ---
 
-## 🚀 Features
+## 📖 Overview
 
-* 👤 Add New Users
-* 📋 Retrieve All Users
-* 🚌 Add New Buses
-* 🔎 Filter Buses by Available Seats
-* 📦 Sequelize ORM Integration
-* 🗄️ MySQL Database Connectivity
-* ⚡ Automatic Table Synchronization
+This project demonstrates Sequelize ORM with MySQL using a clean MVC Architecture.
+
+The application manages:
+
+* 👤 Users
+* 🚌 Buses
+* 🎫 Bookings
+* 💳 Payments
+
+It also demonstrates One-to-Many Associations using Sequelize.
+
+---
+
+## ✨ Features
+
+* 👤 Create Users
+* 🚌 Create Buses
+* 🎫 Create Bookings
+* 📋 Retrieve Users
+* 🔎 Filter Available Buses
+* 🔗 User ↔ Booking Association
+* 🔗 Bus ↔ Booking Association
+* 🗄️ Foreign Key Relationships
+* ⚡ Sequelize Include Queries
+* 📦 Sequelize ORM
 * 🛡️ Error Handling
-* 📁 Modular MVC Architecture
+* 📁 MVC Architecture
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-| Technology   | Purpose              |
-| ------------ | -------------------- |
-| Node.js      | Runtime Environment  |
-| Express.js   | Backend Framework    |
-| MySQL        | Database             |
-| Sequelize    | ORM                  |
-| mysql2       | MySQL Driver         |
-| JavaScript   | Programming Language |
-| Git & GitHub | Version Control      |
+| Technology    | Purpose              |
+| ------------- | -------------------- |
+| Node.js       | Runtime Environment  |
+| Express.js    | Backend Framework    |
+| MySQL         | Relational Database  |
+| Sequelize ORM | ORM                  |
+| mysql2        | MySQL Driver         |
+| JavaScript    | Programming Language |
+| Git & GitHub  | Version Control      |
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```text
 bus-booking-system-api/
 │
+├── assets/
+│   └── images/
+│
 ├── controllers/
 │   ├── userController.js
-│   └── busController.js
+│   ├── busController.js
+│   └── bookingController.js
 │
 ├── models/
 │   ├── User.js
 │   ├── Bus.js
 │   ├── Booking.js
-│   └── Payment.js
+│   ├── Payment.js
+│   └── index.js
 │
 ├── routes/
 │   ├── userRoutes.js
-│   └── busRoutes.js
+│   ├── busRoutes.js
+│   └── bookingRoutes.js
 │
 ├── utils/
 │   └── db.js
@@ -82,15 +114,43 @@ bus-booking-system-api/
 
 ---
 
+## 🔗 Sequelize Associations
+
+### User → Booking (One-to-Many)
+
+```javascript
+User.hasMany(Booking);
+
+Booking.belongsTo(User);
+```
+
+### Bus → Booking (One-to-Many)
+
+```javascript
+Bus.hasMany(Booking);
+
+Booking.belongsTo(Bus);
+```
+
+### Foreign Keys
+
+```text
+Bookings.userId → Users.id
+
+Bookings.busId → Buses.id
+```
+
+---
+
 ## 📦 Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yashav-shukla/bus-booking-system-api.git
+git clone https://github.com/yashavshukla/bus-booking-system-api.git
 ```
 
-### Navigate to Project Folder
+### Navigate to Folder
 
 ```bash
 cd bus-booking-system-api
@@ -112,8 +172,6 @@ npm install sequelize mysql2
 
 ## 🗄️ Database Setup
 
-Create Database:
-
 ```sql
 CREATE DATABASE bus_booking_system;
 ```
@@ -126,69 +184,7 @@ SHOW DATABASES;
 
 ---
 
-## 🔌 Configure Database Connection
-
-File:
-
-```text
-utils/db.js
-```
-
-```javascript
-const { Sequelize } = require("sequelize");
-
-const sequelize = new Sequelize(
-    "bus_booking_system",
-    "root",
-    "YOUR_PASSWORD",
-    {
-        host: "localhost",
-        dialect: "mysql"
-    }
-);
-
-module.exports = sequelize;
-```
-
----
-
-## 📄 Sequelize Models
-
-### User Model
-
-```javascript
-id
-name
-email
-```
-
-### Bus Model
-
-```javascript
-id
-busNumber
-totalSeats
-availableSeats
-```
-
-### Booking Model
-
-```javascript
-id
-seatNumber
-```
-
-### Payment Model
-
-```javascript
-id
-amount
-status
-```
-
----
-
-## ▶️ Run Application
+## ▶️ Run Project
 
 ```bash
 node index.js
@@ -203,69 +199,67 @@ Server running on port 3000
 
 ---
 
-## 📮 API Endpoints
+## 🚀 API Endpoints
 
-### 👤 Add User
+### 👤 Create User
 
 ```http
 POST /users
 ```
 
-Request Body:
-
 ```json
 {
-  "name": "Yashav Shukla",
-  "email": "yashav@gmail.com"
-}
-```
-
-Response:
-
-```json
-{
-  "message": "User Added Successfully"
+  "name": "John Doe",
+  "email": "john@example.com"
 }
 ```
 
 ---
 
-### 📋 Get All Users
-
-```http
-GET /users
-```
-
-Uses:
-
-```javascript
-User.findAll()
-```
-
----
-
-### 🚌 Add Bus
+### 🚌 Create Bus
 
 ```http
 POST /buses
 ```
 
-Request Body:
-
 ```json
 {
-  "busNumber": "UP101",
-  "totalSeats": 50,
-  "availableSeats": 25
+  "busNumber": "MH12AB1234",
+  "totalSeats": 40,
+  "availableSeats": 30
 }
 ```
 
-Response:
+---
+
+### 🎫 Create Booking
+
+```http
+POST /bookings
+```
 
 ```json
 {
-  "message": "Bus Added Successfully"
+  "userId": 1,
+  "busId": 1,
+  "seatNumber": 10
 }
+```
+
+---
+
+### 📋 Get User Bookings
+
+```http
+GET /users/:id/bookings
+```
+
+---
+
+### 🚌 Get Bus Bookings
+
+```http
+GET /buses/:id/bookings
 ```
 
 ---
@@ -282,142 +276,187 @@ Example:
 GET /buses/available/10
 ```
 
-Uses Sequelize filtering:
+---
 
-```javascript
-Bus.findAll({
-  where: {
-    availableSeats: {
-      [Op.gt]: seats
-    }
-  }
-})
-```
+## 📸 Project Screenshots
 
-Returns all buses having available seats greater than the specified value.
+### 👤 Create User
+
+![Create User](assets/images/create-user.png)
 
 ---
 
-## 🧪 Sample Data
+### 🚌 Create Bus
 
-### User 1
+![Create Bus](assets/images/create-bus.png)
 
-```json
-{
-  "name": "Yashav",
-  "email": "yashav@gmail.com"
-}
-```
+---
 
-### User 2
+### 🎫 Create Booking
 
-```json
-{
-  "name": "Rahul",
-  "email": "rahul@gmail.com"
-}
-```
+![Create Booking](assets/images/create-booking.png)
 
-### User 3
+---
 
-```json
-{
-  "name": "Amit",
-  "email": "amit@gmail.com"
-}
-```
+### 📋 Get User Bookings
 
-### Bus 1
+![Get User Bookings](assets/images/get-user-bookings.png)
 
-```json
-{
-  "busNumber": "UP101",
-  "totalSeats": 50,
-  "availableSeats": 25
-}
-```
+---
 
-### Bus 2
+### 🚌 Get Bus Bookings
 
-```json
-{
-  "busNumber": "UP102",
-  "totalSeats": 40,
-  "availableSeats": 8
-}
-```
+![Get Bus Bookings](assets/images/get-bus-bookings.png)
+
+---
+
+### 🔎 Available Buses
+
+![Available Buses](assets/images/available-buses.png)
+
+---
+
+### 🗄️ Database Tables
+
+![MySQL Tables](assets/images/mysql-tables.png)
+
+---
+
+### 📊 Users Table Records
+
+![Users Table](assets/images/SELECT%20FROM%20Users.png)
+
+---
+
+### 📊 Buses Table Records
+
+![Buses Table](assets/images/SELECT%20FROM%20Buses.png)
+
+---
+
+### 📊 Bookings Table Records
+
+![Bookings Table](assets/images/SELECT%20FROM%20Bookings.png)
+
+---
+
+### 🗃️ Database Structure
+
+![Database Structure](assets/images/db%201.png)
+
+![Database Structure](assets/images/db%202.png)
+
+---
+
+### 📥 POST Request Results
+
+![POST Result](assets/images/post_request_add%20value.png)
+
+![POST Result](assets/images/post_request_add%20value%202.png)
+
+---
+
+### 📤 GET Request Results
+
+![GET Result](assets/images/get_request_show%20value.png)
+
+![GET Result](assets/images/get_request_show%20value%202.png)
 
 ---
 
 ## 🎯 Assignment Deliverables Covered
 
-✅ Define Sequelize Models
+### ✅ Foreign Keys
 
-* User
-* Bus
-* Booking
-* Payment
+* userId
+* busId
 
-✅ Insert Data Using Sequelize
+### ✅ One-to-Many Associations
 
-* User.create()
-* Bus.create()
+```javascript
+User.hasMany(Booking);
 
-✅ Retrieve Data Using Sequelize
+Booking.belongsTo(User);
 
-* User.findAll()
+Bus.hasMany(Booking);
 
-✅ Filter Data Using Sequelize
+Booking.belongsTo(Bus);
+```
 
-* Bus.findAll()
-* Sequelize where condition
+### ✅ CRUD Operations
 
-✅ API Endpoints
+* Create Users
+* Create Buses
+* Create Bookings
+* Retrieve Users
+* Retrieve User Bookings
+* Retrieve Bus Bookings
 
-* POST /users
-* GET /users
-* POST /buses
-* GET /buses/available/:seats
+### ✅ Sequelize Include Queries
+
+* User with Bookings
+* Booking with Bus Details
+* Bus with User Details
+
+### ✅ MVC Architecture
+
+* Models
+* Controllers
+* Routes
+* Database Layer
 
 ---
 
 ## 🚀 Future Improvements
 
-* User Authentication
-* Seat Booking Functionality
-* Payment Gateway Integration
-* Booking History
-* Admin Dashboard
-* Sequelize Associations
 * JWT Authentication
+* User Login & Registration
+* Seat Availability Tracking
+* Payment Gateway Integration
+* Booking Cancellation
+* Admin Dashboard
+* Role Based Access Control
 
----
 ---
 
 ## 👨‍💻 Author
 
 <p align="center">
-  <a href="https://github.com/yashav-shukla">
+  <a href="<p align="center">
+  <a href="https://github.com/yashavshukla">
     <img src="https://skillicons.dev/icons?i=github" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/yashav-shukla">
-    <b>Yashav Shukla</b>
+  <b>Yashav Shukla</b>
+</p>">
+    <img src="https://skillicons.dev/icons?i=github" />
   </a>
 </p>
 
 <p align="center">
-  GitHub: https://github.com/yashavshukla
+  <b>Yashav Shukla</b>
+</p>
+
+<p align="center">
+  Backend Developer | Node.js | Express.js | MySQL | Sequelize
 </p>
 
 ---
 
 ## ⭐ Support
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+If you found this project useful:
+
+⭐ Star the repository
+
+🍴 Fork the repository
+
+📢 Share with others
+
+---
 
 <p align="center">
-  Made with ❤️ by Yashav Shukla
+Made with ❤️ using Node.js, Express.js, MySQL & Sequelize ORM
 </p>

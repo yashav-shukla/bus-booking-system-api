@@ -1,4 +1,6 @@
 const Bus = require("../models/Bus");
+const Booking = require("../models/Booking");
+const User = require("../models/User");
 const { Op } = require("sequelize");
 
 const addBus = async (req, res) => {
@@ -45,7 +47,31 @@ const getAvailableBuses = async (req, res) => {
     }
 };
 
+const getBusBookings = async (req, res) => {
+    try {
+
+        const bus = await Bus.findByPk(req.params.id, {
+            include: {
+                model: Booking,
+                include: [User]
+            }
+        });
+
+        if (!bus) {
+            return res.status(404).json({
+                message: "Bus not found"
+            });
+        }
+
+        res.status(200).json(bus.Bookings);
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 module.exports = {
     addBus,
-    getAvailableBuses
+    getAvailableBuses,
+    getBusBookings
 };
